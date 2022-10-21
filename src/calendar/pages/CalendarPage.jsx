@@ -1,25 +1,14 @@
-import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
+import { Calendar } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
-import enUS from 'date-fns/locale/en-US';
-
+import { addHours } from 'date-fns';
 import { Navbar } from "../";
-import { addHours, parse, startOfWeek, getDay, format } from 'date-fns';
 
-const locales = {
-  'en-US': enUS,
-}
-
-const localizer = dateFnsLocalizer({
-  format,
-  parse,
-  startOfWeek,
-  getDay,
-  locales,
-})
+import { getMessagesES, localizer } from '../../helpers';
+import { useState } from 'react';
 
 const events = [{
-  title: 'birthday chief',
+  title: "Chief's birthday",
   notes: 'Have to buy the cake',
   start: new Date(),
   end: addHours( new Date(), 2 ),
@@ -31,17 +20,42 @@ const events = [{
 }]
 
 export const CalendarPage = () => {
+
+  const [language, setLanguage] = useState(false);
+
+  const onChangeLanguage = () => {
+    setLanguage( current => !current ); // cambiar el valor boolean
+  }
+
+  const eventStyleGetter = ( event, start, end, isSelected ) => {
+    console.log({event, start, end, isSelected});
+
+    const style = {
+      backgroundColor: '#347CF7',
+      borderRadius: '5px',
+      opacity: 2,
+      color: 'white'
+    }
+
+    return {
+      style
+    }
+  }
+
   return (
     <>
-      <Navbar />
+      <Navbar onChangeLanguage={ onChangeLanguage }/>
       
       <div>
         <Calendar
+          culture={ language && 'es'}
+          messages = { language && getMessagesES() }
           localizer={ localizer }
           events={ events }
           startAccessor="start"
           endAccessor="end"
           style={{ height: 'calc(100vh - 80px)' }}
+          eventPropGetter={ eventStyleGetter }
         />
       </div>
 

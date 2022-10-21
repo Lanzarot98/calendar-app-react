@@ -2,3 +2,7 @@ body {
     background-color: rgb(255, 255, 255);
     color: black;
 }
+
+.rbc-ellipsis, .rbc-show-more, .rbc-row-segment .rbc-event-content, .rbc-event-label {
+    white-space: normal;
+}
