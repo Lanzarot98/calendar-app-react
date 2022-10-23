@@ -171,7 +171,7 @@ export const CalendarModal = () => {
                 className="btn btn-outline-primary btn-block"
             >
                 <i className="far fa-save"></i>
-                <span>Save</span>
+                <span> Save</span>
             </button>
 
         </form>
