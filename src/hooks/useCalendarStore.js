@@ -34,7 +34,7 @@ export const useCalendarStore = () => {
         // propiedades:
         activeEvent,
         events,
-        hasEventSelected: !!activeEvent, // si es null regresa falso, si tiene un objeto regresa true
+        hasEventSelected: !!activeEvent?._id, //si es null regresa falso, si tiene un objeto regresa true
 
         // métodos:
         setActiveEvent,
