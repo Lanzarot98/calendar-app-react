@@ -5,17 +5,19 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Navbar, CalendarEvent, CalendarModal, FabAddNew, FabDelete } from "../";
 
 import { getMessagesES, localizer } from '../../helpers';
-import { useCalendarStore, useUiStore } from '../../hooks';
+import { useAuthStore, useCalendarStore, useUiStore } from '../../hooks';
 
 export const CalendarPage = () => {
 
+  
   const [language, setLanguage] = useState(false);
-
+  
   const onChangeLanguage = () => {
     setLanguage( current => !current ); // cambiar el valor boolean
   }
-
+  
   // custom hook
+  const { user } = useAuthStore();
   const { openDateModal } = useUiStore();
   const { events, setActiveEvent, startLoadingEvents } = useCalendarStore();
 
@@ -24,8 +26,11 @@ export const CalendarPage = () => {
   const eventStyleGetter = ( event, start, end, isSelected ) => {
     // console.log({event, start, end, isSelected});
 
+    // console.log(event);
+    const isMyEvent = ( user.uid === event.user._id ) || ( user.uid === event.user.uid );
+
     const style = {
-      backgroundColor: '#347CF7',
+      backgroundColor: isMyEvent ? '#347CF7' : '#465660',
       borderRadius: '5px',
       opacity: 2,
       color: 'white'
