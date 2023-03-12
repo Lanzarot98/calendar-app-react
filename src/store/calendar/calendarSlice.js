@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 // import { addHours } from 'date-fns';
 
 // const tempEvent = {
-//   _id: new Date().getTime(),
+//   id: new Date().getTime(),
 //   title: "Chief's birthday",
 //   notes: 'Have to buy the cake',
 //   start: new Date(),
@@ -33,6 +33,7 @@ export const calendarSlice = createSlice({
     },
     onUpdateEvent: ( state, { payload } ) => {
       state.events = state.events.map( (event) => {
+        // si se encuentra el id se actualiza:
         if( event.id === payload.id ) {
           return payload;
         }
