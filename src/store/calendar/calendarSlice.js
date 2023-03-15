@@ -52,7 +52,7 @@ export const calendarSlice = createSlice({
       // state.events = payload;
       payload.forEach( event => {
         const exists = state.events.some( dbEvent => dbEvent.id === event.id );
-        if (!exists) {
+        if (!exists) { // si no existe entra y hace push (lo añade)
           state.events.push( event );
         }
       })
