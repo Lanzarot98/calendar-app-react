@@ -52,9 +52,59 @@ describe('Pruebas en useUiStore', () => {
             openDateModal();
         });
 
-        console.log({result: result.current/*, isDateModalOpen*/ }); // 
+        // console.log({result: result.current/*, isDateModalOpen*/ }); // 
         expect( result.current.isDateModalOpen ).toBeTruthy();
 
-    })
- 
+    });
+    
+    test('closeDateModal debe de colocar false en el isDateModalOpen', () => { 
+        
+        const mockStore = getMockStore({ isDateModalOpen: true })
+
+        // renderizar el hook:
+        const { result } = renderHook( () => useUiStore(), {
+            wrapper: ({ children }) => <Provider store={ mockStore }>{ children }</Provider>
+        });
+        
+        const { /*isDateModalOpen,*/ closeDateModal } = result.current; // no serviría tomar el isDateModalOpen tener cuidado con este tipo de desestructuración
+        // por lo que se recomienda tomar valores primitivos
+
+        act( () => {
+            closeDateModal();
+            // si no se desestructura el closeDateModal se puede colocar así:
+            // result.current.closeDateModal(); 
+        });
+
+        // console.log({result: result.current/*, isDateModalOpen*/ }); // 
+        expect( result.current.isDateModalOpen ).toBeFalsy();
+
+    });
+    
+    test('toggleDateModal debe de cambiar el booleano en el isDateModalOpen', () => { 
+        
+        const mockStore = getMockStore({ isDateModalOpen: true })
+
+        // renderizar el hook:
+        const { result } = renderHook( () => useUiStore(), {
+            wrapper: ({ children }) => <Provider store={ mockStore }>{ children }</Provider>
+        });
+        
+        // const { /*isDateModalOpen,*/ toggleDateModal } = result.current; // no serviría tomar el isDateModalOpen tener cuidado con este tipo de desestructuración
+        // por lo que se recomienda tomar valores primitivos
+
+        act( () => {
+            result.current.toggleDateModal();
+        });
+
+        // console.log({result: result.current/*, isDateModalOpen*/ }); // 
+        expect( result.current.isDateModalOpen ).toBeFalsy();
+
+        act( () => {
+            result.current.toggleDateModal();
+        });
+
+        expect( result.current.isDateModalOpen ).toBeTruthy();
+
+    });
+
 });
