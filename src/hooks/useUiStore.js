@@ -9,16 +9,16 @@ export const useUiStore = () => {
 
     const openDateModal = () => {
         dispatch( onOpenDateModal() )
-    }
+    };
     const closeDateModal = () => {
         dispatch( onCloseDateModal() )
-    }
+    };
 
     const toggleDateModal = () => {
         (isDateModalOpen)
             ? closeDateModal()
             : openDateModal();
-    }
+    };
 
     return {
         //* Properties
@@ -28,6 +28,6 @@ export const useUiStore = () => {
         openDateModal,
         closeDateModal,
         toggleDateModal,
-    }
+    };
 
 }
