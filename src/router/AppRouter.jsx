@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom"
 import { LoginPage } from "../auth";
 import { CalendarPage } from "../calendar";
-import { getEnvVariables } from "../helpers";
+// import { getEnvVariables } from "../helpers";
 import { useAuthStore } from "../hooks";
 
 
