@@ -19,7 +19,7 @@ describe('Pruebas en useUiStore', () => {
     
     test('Debe regresar los valores por defecto', () => { 
         
-        const mockStore = getMockStore({ isDateModalOpen: false })
+        const mockStore = getMockStore({ isDateModalOpen: false });
 
         // renderizar el hook:
         const { result } = renderHook( () => useUiStore(), {
@@ -32,7 +32,7 @@ describe('Pruebas en useUiStore', () => {
             closeDateModal: expect.any(Function),
             openDateModal: expect.any(Function),
             toggleDateModal: expect.any(Function),
-        })
+        });
 
     });
 
